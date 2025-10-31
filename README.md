@@ -9,7 +9,7 @@
 
 E-commerce moderno desenvolvido com Next.js 16, TypeScript e Material UI, apresentando ofertas imperdíveis com até 40% de desconto.
 
-[🌐 Ver Demo](hhttps://b8one-challage.vercel.app/) · [📝 Reportar Bug](https://github.com/felipengr/b8one-challage/issues) · [✨ Solicitar Feature](https://github.com/felipengr/b8one-challage/issues)
+[🌐 Ver Demo](https://b8one-challage.vercel.app/) · [📝 Reportar Bug](https://github.com/felipengr/b8one-challage/issues) · [✨ Solicitar Feature](https://github.com/felipengr/b8one-challage/issues)
 
 </div>
 
