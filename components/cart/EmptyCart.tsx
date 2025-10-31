@@ -22,7 +22,7 @@ export default function EmptyCart({ onClose }: EmptyCartProps) {
       <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>
         Seu carrinho está vazio
       </Typography>
-      <Typography variant="body2" sx={{ color: '#6b7280', mb: 3 }}>
+      <Typography variant="body2" sx={{ color: '#4b5563', mb: 3 }}>
         Adicione produtos para começar suas compras!
       </Typography>
       <Button

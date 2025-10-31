@@ -156,7 +156,7 @@ export default function Footer() {
         <Divider sx={{ backgroundColor: '#374151', my: 4 }} />
 
         <Box sx={{ textAlign: 'center' }}>
-          <Typography variant="body2" sx={{ color: '#6b7280' }}>
+          <Typography variant="body2" sx={{ color: '#4b5563' }}>
             © {currentYear} B8ONE. Todos os direitos reservados.
           </Typography>
         </Box>

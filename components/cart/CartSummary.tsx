@@ -32,7 +32,7 @@ export default function CartSummary({
       <Divider sx={{ my: 2 }} />
 
       <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-        <Typography variant="body2" sx={{ color: '#6b7280' }}>
+        <Typography variant="body2" sx={{ color: '#4b5563' }}>
           Subtotal:
         </Typography>
         <Typography variant="body2" sx={{ fontWeight: 600 }}>
@@ -41,7 +41,7 @@ export default function CartSummary({
       </Box>
 
       <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
-        <Typography variant="body2" sx={{ color: '#6b7280' }}>
+        <Typography variant="body2" sx={{ color: '#4b5563' }}>
           Frete:
         </Typography>
         <Typography
@@ -97,7 +97,7 @@ export default function CartSummary({
         fullWidth
         onClick={onClearCart}
         sx={{
-          color: '#6b7280',
+          color: '#4b5563',
           fontWeight: 600,
           '&:hover': {
             backgroundColor: '#f3f4f6',

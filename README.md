@@ -219,7 +219,7 @@ b8one-challenge/
 --gray-200: #e5e7eb
 --gray-300: #d1d5db
 --gray-400: #9ca3af
---gray-500: #6b7280
+--gray-500: #4b5563
 --gray-600: #374151
 --gray-700: #1f2937
 --gray-800: #111827

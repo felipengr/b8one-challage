@@ -58,7 +58,7 @@ export default function ShippingCalculator({ onShippingCalculated }: ShippingCal
   return (
     <Box sx={{ mb: 2 }}>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-        <LocalShippingIcon sx={{ fontSize: 20, color: '#6b7280' }} />
+        <LocalShippingIcon sx={{ fontSize: 20, color: '#4b5563' }} />
         <Typography variant="body2" sx={{ fontWeight: 600, color: '#374151' }}>
           Calcular Frete
         </Typography>
@@ -131,7 +131,7 @@ export default function ShippingCalculator({ onShippingCalculated }: ShippingCal
             </Typography>
           </Box>
 
-          <Typography variant="caption" sx={{ color: '#6b7280' }}>
+          <Typography variant="caption" sx={{ color: '#4b5563' }}>
             Entrega em {shippingInfo.days}
           </Typography>
         </Box>

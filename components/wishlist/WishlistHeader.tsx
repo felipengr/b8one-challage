@@ -18,7 +18,7 @@ export default function WishlistHeader({ count }: WishlistHeaderProps) {
           Meus Favoritos
         </Typography>
       </Box>
-      <Typography variant="body1" sx={{ color: '#6b7280' }}>
+      <Typography variant="body1" sx={{ color: '#4b5563' }}>
         {count} {count === 1 ? 'produto salvo' : 'produtos salvos'}
       </Typography>
     </Box>

@@ -19,7 +19,7 @@ export default function WishlistEmpty() {
       <Typography variant="h4" sx={{ fontWeight: 700, mb: 2 }}>
         Sua lista de favoritos está vazia
       </Typography>
-      <Typography variant="body1" sx={{ color: '#6b7280', mb: 4, maxWidth: 500 }}>
+      <Typography variant="body1" sx={{ color: '#4b5563', mb: 4, maxWidth: 500 }}>
         Explore nossos produtos e adicione seus favoritos clicando no ícone de coração!
       </Typography>
       <Button

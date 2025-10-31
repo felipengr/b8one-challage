@@ -14,7 +14,7 @@ export default function OfertasHeader({ productCount }: OfertasHeaderProps) {
       >
         Ofertas da Semana
       </Typography>
-      <Typography variant="body1" sx={{ color: '#6b7280' }}>
+      <Typography variant="body1" sx={{ color: '#4b5563' }}>
         {productCount} {productCount === 1 ? 'produto encontrado' : 'produtos encontrados'}
       </Typography>
     </Box>

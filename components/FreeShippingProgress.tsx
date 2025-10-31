@@ -41,8 +41,8 @@ export default function FreeShippingProgress({ cartTotal }: FreeShippingProgress
   return (
     <Box sx={{ mb: 3 }}>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-        <LocalShippingIcon sx={{ fontSize: 20, color: '#6b7280' }} />
-        <Typography variant="body2" sx={{ color: '#6b7280', fontSize: '0.85rem' }}>
+        <LocalShippingIcon sx={{ fontSize: 20, color: '#4b5563' }} />
+        <Typography variant="body2" sx={{ color: '#4b5563', fontSize: '0.85rem' }}>
           Faltam <Box component="strong" sx={{ color: '#16a34a' }}>{formatPrice(remaining)}</Box> para frete grátis
         </Typography>
       </Box>

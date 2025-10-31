@@ -59,7 +59,7 @@ export default function ProductFilters({ categories, filters, products, onFilter
               startIcon={<CloseIcon />}
               sx={{
                 textTransform: 'none',
-                color: '#6b7280',
+                color: '#4b5563',
                 fontSize: '0.75rem',
                 fontWeight: 600,
                 '&:hover': {

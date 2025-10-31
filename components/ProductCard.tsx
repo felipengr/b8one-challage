@@ -90,7 +90,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         {isFavorite ? (
           <FavoriteIcon sx={{ color: '#ef4444', fontSize: 20 }} />
         ) : (
-          <FavoriteBorderIcon sx={{ color: '#6b7280', fontSize: 20 }} />
+          <FavoriteBorderIcon sx={{ color: '#4b5563', fontSize: 20 }} />
         )}
       </IconButton>
 
@@ -136,7 +136,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           <Typography 
             variant="overline" 
             sx={{ 
-              color: '#6b7280',
+              color: '#4b5563',
               fontWeight: 700,
               letterSpacing: 1,
               fontSize: '0.65rem',
@@ -179,7 +179,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 },
               }}
             />
-            <Typography variant="caption" sx={{ color: '#6b7280', fontWeight: 500 }}>
+            <Typography variant="caption" sx={{ color: '#4b5563', fontWeight: 500 }}>
               ({product.rating.count})
             </Typography>
           </Box>
