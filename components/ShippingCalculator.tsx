@@ -10,6 +10,12 @@ interface ShippingCalculatorProps {
   onShippingCalculated: (info: ShippingInfo | null) => void;
 }
 
+const formatPrice = (price: number) =>
+  new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(price);
+
 export default function ShippingCalculator({ onShippingCalculated }: ShippingCalculatorProps) {
   const [cep, setCep] = useState('');
   const [loading, setLoading] = useState(false);
@@ -17,13 +23,14 @@ export default function ShippingCalculator({ onShippingCalculated }: ShippingCal
   const [error, setError] = useState('');
 
   const handleCepChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const formatted = formatCep(e.target.value);
-    setCep(formatted);
+    setCep(formatCep(e.target.value));
     setError('');
   };
 
   const handleCalculate = async () => {
-    if (cep.replace(/\D/g, '').length !== 8) {
+    const cleanCep = cep.replace(/\D/g, '');
+    
+    if (cleanCep.length !== 8) {
       setError('CEP inválido. Digite um CEP válido.');
       return;
     }
@@ -46,12 +53,7 @@ export default function ShippingCalculator({ onShippingCalculated }: ShippingCal
     onShippingCalculated(info);
   };
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(price);
-  };
+  const isValidCep = cep.replace(/\D/g, '').length === 8;
 
   return (
     <Box sx={{ mb: 2 }}>
@@ -73,13 +75,13 @@ export default function ShippingCalculator({ onShippingCalculated }: ShippingCal
             flex: 1,
             '& .MuiOutlinedInput-root': {
               backgroundColor: '#fff',
-            }
+            },
           }}
         />
         <Button
           variant="contained"
           onClick={handleCalculate}
-          disabled={loading || cep.replace(/\D/g, '').length !== 8}
+          disabled={loading || !isValidCep}
           sx={{
             backgroundColor: '#000',
             color: '#fff',
@@ -91,7 +93,7 @@ export default function ShippingCalculator({ onShippingCalculated }: ShippingCal
             '&:disabled': {
               backgroundColor: '#e5e7eb',
               color: '#9ca3af',
-            }
+            },
           }}
         >
           {loading ? <CircularProgress size={20} color="inherit" /> : 'Calcular'}

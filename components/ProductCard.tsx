@@ -1,33 +1,32 @@
 'use client';
 
-import { Product } from '@/types/product';
+import { useMemo } from 'react';
 import { Card, CardContent, CardMedia, Typography, Button, Box, Rating, Chip, IconButton } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { useMemo } from 'react';
+import { Product } from '@/types/product';
 import { useShop } from '@/contexts/ShopContext';
 
 interface ProductCardProps {
   product: Product;
 }
 
+const formatPrice = (price: number) =>
+  new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(price);
+
+const calculateDiscount = (productId: number) => ((productId * 7) % 30) + 10;
+
 export default function ProductCard({ product }: ProductCardProps) {
   const { addToWishlist, removeFromWishlist, isInWishlist, addToCart } = useShop();
   const isFavorite = isInWishlist(product.id);
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(price);
-  };
-
-  const discount = useMemo(() => {
-    return ((product.id * 7) % 30) + 10;
-  }, [product.id]);
-
-  const originalPrice = product.price * (1 + discount / 100);
+  const discount = useMemo(() => calculateDiscount(product.id), [product.id]);
+  const originalPrice = useMemo(() => product.price * (1 + discount / 100), [product.price, discount]);
+  const savings = useMemo(() => originalPrice - product.price, [originalPrice, product.price]);
 
   const handleToggleFavorite = () => {
     if (isFavorite) {
@@ -35,10 +34,6 @@ export default function ProductCard({ product }: ProductCardProps) {
     } else {
       addToWishlist(product);
     }
-  };
-
-  const handleAddToCart = () => {
-    addToCart(product);
   };
 
   return (
@@ -55,7 +50,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         transition: 'all 0.3s ease',
         '&:hover': {
           boxShadow: '0 20px 40px rgba(0,0,0,0.12)',
-        }
+        },
       }}
     >
       <Chip 
@@ -77,6 +72,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       <IconButton
         size="small"
         onClick={handleToggleFavorite}
+        aria-label={isFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
         sx={{
           position: 'absolute',
           top: 16,
@@ -88,7 +84,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           '&:hover': {
             backgroundColor: '#f9f9f9',
             transform: 'scale(1.1)',
-          }
+          },
         }}
       >
         {isFavorite ? (
@@ -122,7 +118,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             transition: 'transform 0.3s ease',
             '&:hover': {
               transform: 'scale(1.1)',
-            }
+            },
           }}
         />
       </Box>
@@ -179,8 +175,8 @@ export default function ProductCard({ product }: ProductCardProps) {
               sx={{ 
                 color: '#FFA500',
                 '& .MuiRating-iconEmpty': {
-                  color: '#e5e7eb'
-                }
+                  color: '#e5e7eb',
+                },
               }}
             />
             <Typography variant="caption" sx={{ color: '#6b7280', fontWeight: 500 }}>
@@ -203,7 +199,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             </Typography>
             
             <Chip 
-              label={`Economize ${formatPrice(originalPrice - product.price)}`}
+              label={`Economize ${formatPrice(savings)}`}
               size="small"
               sx={{ 
                 backgroundColor: '#dcfce7',
@@ -232,7 +228,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             variant="contained"
             fullWidth
             startIcon={<ShoppingCartIcon />}
-            onClick={handleAddToCart}
+            onClick={() => addToCart(product)}
             sx={{
               fontWeight: 700,
               fontSize: '1rem',

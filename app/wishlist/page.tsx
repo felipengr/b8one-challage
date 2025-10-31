@@ -1,13 +1,12 @@
 'use client';
 
-import { Container, Typography, Box, Button } from '@mui/material';
+import { Container, Box } from '@mui/material';
 import { useShop } from '@/contexts/ShopContext';
-import ProductCard from '@/components/ProductCard';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
-import Link from 'next/link';
+import WishlistHeader from '@/components/wishlist/WishlistHeader';
+import WishlistEmpty from '@/components/wishlist/WishlistEmpty';
+import WishlistGrid from '@/components/wishlist/WishlistGrid';
 
 export default function WishlistPage() {
   const { wishlist } = useShop();
@@ -17,82 +16,11 @@ export default function WishlistPage() {
       <Navbar />
       <Box sx={{ minHeight: '100vh', backgroundColor: '#fafafa', py: 8 }}>
         <Container maxWidth="xl">
-          <Box sx={{ mb: 8 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
-              <FavoriteBorderIcon sx={{ fontSize: 40, color: '#ef4444' }} />
-              <Typography 
-                variant="h3" 
-                component="h1"
-                sx={{ fontWeight: 700, color: '#111827' }}
-              >
-                Meus Favoritos
-              </Typography>
-            </Box>
-            <Typography variant="body1" sx={{ color: '#6b7280' }}>
-              {wishlist.length} {wishlist.length === 1 ? 'produto salvo' : 'produtos salvos'}
-            </Typography>
-          </Box>
-
+          <WishlistHeader count={wishlist.length} />
           {wishlist.length === 0 ? (
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                py: 12,
-                textAlign: 'center',
-              }}
-            >
-              <FavoriteBorderIcon sx={{ fontSize: 120, color: '#d1d5db', mb: 3 }} />
-              <Typography variant="h4" sx={{ fontWeight: 700, mb: 2 }}>
-                Sua lista de favoritos está vazia
-              </Typography>
-              <Typography variant="body1" sx={{ color: '#6b7280', mb: 4, maxWidth: 500 }}>
-                Explore nossos produtos e adicione seus favoritos clicando no ícone de coração!
-              </Typography>
-              <Button
-                component={Link}
-                href="/ofertas"
-                variant="contained"
-                size="large"
-                startIcon={<ShoppingBagIcon />}
-                sx={{
-                  backgroundColor: '#000',
-                  color: '#fff',
-                  fontWeight: 700,
-                  fontSize: '1.1rem',
-                  px: 4,
-                  py: 1.5,
-                  borderRadius: 3,
-                  '&:hover': {
-                    backgroundColor: '#1a1a1a',
-                    transform: 'translateY(-2px)',
-                    boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
-                  },
-                  transition: 'all 0.3s ease',
-                }}
-              >
-                Explorar Produtos
-              </Button>
-            </Box>
+            <WishlistEmpty />
           ) : (
-            <Box
-              sx={{
-                display: 'grid',
-                gridTemplateColumns: {
-                  xs: '1fr',
-                  sm: 'repeat(2, 1fr)',
-                  lg: 'repeat(3, 1fr)',
-                  xl: 'repeat(4, 1fr)',
-                },
-                gap: 3,
-              }}
-            >
-              {wishlist.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </Box>
+            <WishlistGrid products={wishlist} />
           )}
         </Container>
       </Box>
