@@ -2,25 +2,17 @@ import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import "./globals.css";
 import "./swiper-custom.css";
-import ThemeRegistry from '@/components/ThemeRegistry';
+import ThemeRegistry from "@/components/ThemeRegistry";
 
-const nunito = Nunito({ 
+const nunito = Nunito({
   subsets: ["latin"],
+  weight: ["300", "400", "600", "700", "900"],
   variable: "--font-nunito",
-  weight: ['300', '400', '500', '600', '700', '800', '900'],
-  display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: "B8ONE - Ofertas da Semana",
-  description: "As melhores ofertas em produtos selecionados. Aproveite descontos de até 40%!",
-  keywords: "ofertas, produtos, descontos, e-commerce, loja online",
-  authors: [{ name: "B8ONE" }],
-  openGraph: {
-    title: "B8ONE - Ofertas da Semana",
-    description: "As melhores ofertas em produtos selecionados. Aproveite descontos de até 40%!",
-    type: "website",
-  },
+  title: "B8ONE - Ofertas Imperdíveis",
+  description: "As melhores ofertas em produtos selecionados com até 40% de desconto",
 };
 
 export default function RootLayout({

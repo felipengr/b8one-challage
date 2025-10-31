@@ -5,14 +5,16 @@ import { Card, CardContent, CardMedia, Typography, Button, Box, Rating, Chip, Ic
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
+import { useShop } from '@/contexts/ShopContext';
 
 interface ProductCardProps {
   product: Product;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const { addToWishlist, removeFromWishlist, isInWishlist, addToCart } = useShop();
+  const isFavorite = isInWishlist(product.id);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('pt-BR', {
@@ -26,6 +28,18 @@ export default function ProductCard({ product }: ProductCardProps) {
   }, [product.id]);
 
   const originalPrice = product.price * (1 + discount / 100);
+
+  const handleToggleFavorite = () => {
+    if (isFavorite) {
+      removeFromWishlist(product.id);
+    } else {
+      addToWishlist(product);
+    }
+  };
+
+  const handleAddToCart = () => {
+    addToCart(product);
+  };
 
   return (
     <Card 
@@ -62,7 +76,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       <IconButton
         size="small"
-        onClick={() => setIsFavorite(!isFavorite)}
+        onClick={handleToggleFavorite}
         sx={{
           position: 'absolute',
           top: 16,
@@ -218,6 +232,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             variant="contained"
             fullWidth
             startIcon={<ShoppingCartIcon />}
+            onClick={handleAddToCart}
             sx={{
               fontWeight: 700,
               fontSize: '1rem',
