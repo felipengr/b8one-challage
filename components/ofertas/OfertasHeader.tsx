@@ -6,7 +6,7 @@ interface OfertasHeaderProps {
 
 export default function OfertasHeader({ productCount }: OfertasHeaderProps) {
   return (
-    <Box sx={{ mb: 8 }}>
+    <Box sx={{ mb: { xs: 0, lg: 8 } }}>
       <Typography 
         variant="h3" 
         component="h2"
