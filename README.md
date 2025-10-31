@@ -2,12 +2,12 @@
 
 <div align="center">
   
-![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)
+![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)
 ![Material-UI](https://img.shields.io/badge/Material--UI-6-0081CB?style=for-the-badge&logo=material-ui)
 ![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
 
-E-commerce moderno desenvolvido com Next.js 15, TypeScript e Material UI, apresentando ofertas imperdíveis com até 40% de desconto.
+E-commerce moderno desenvolvido com Next.js 16, TypeScript e Material UI, apresentando ofertas imperdíveis com até 40% de desconto.
 
 [🌐 Ver Demo](https://b8one-challenge.vercel.app) · [📝 Reportar Bug](https://github.com/felipengr/b8one-challage/issues) · [✨ Solicitar Feature](https://github.com/felipengr/b8one-challage/issues)
 
@@ -84,7 +84,7 @@ Este projeto foi desenvolvido como um desafio técnico para demonstrar habilidad
 ## 🚀 Tecnologias
 
 ### Core
-- **[Next.js 15](https://nextjs.org/)** - Framework React com App Router e Server Components
+- **[Next.js 16](https://nextjs.org/)** - Framework React com App Router e Server Components
 - **[TypeScript](https://www.typescriptlang.org/)** - Tipagem estática e segurança de tipos
 - **[React 19](https://react.dev/)** - Biblioteca para construção de interfaces
 
@@ -276,7 +276,7 @@ npm start
 
 ## 🎯 Decisões Técnicas
 
-### Por que Next.js 15?
+### Por que Next.js 16?
 
 - **App Router**: Melhor performance e SEO
 - **Server Components**: Renderização otimizada
