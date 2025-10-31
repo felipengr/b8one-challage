@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Nunito } from "next/font/google";
 import "./globals.css";
 import "./swiper-custom.css";
@@ -8,12 +8,19 @@ const nunito = Nunito({
   subsets: ["latin"],
   weight: ["300", "400", "600", "700", "900"],
   variable: "--font-nunito",
-  display: "swap",
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
   title: "B8ONE - Ofertas Imperdíveis",
   description: "As melhores ofertas em produtos selecionados com até 40% de desconto",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
+  colorScheme: "light",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -22,7 +29,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" style={{ colorScheme: 'light' }}>
+      <head>
+        <meta name="color-scheme" content="light" />
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            :root { color-scheme: light only; }
+            html, body { background-color: #ffffff !important; color: #000000 !important; }
+          `
+        }} />
+      </head>
       <body className={`${nunito.variable} antialiased`}>
         <ThemeRegistry>
           {children}

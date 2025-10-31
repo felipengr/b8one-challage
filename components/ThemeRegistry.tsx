@@ -1,11 +1,29 @@
 'use client';
 
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { ReactNode } from 'react';
-import { theme } from '@/lib/theme';
 
-export default function ThemeRegistry({ children }: { children: ReactNode }) {
+const theme = createTheme({
+  palette: {
+    mode: 'light',
+    primary: {
+      main: '#000000',
+    },
+    background: {
+      default: '#ffffff',
+      paper: '#ffffff',
+    },
+    text: {
+      primary: '#000000',
+      secondary: '#6b7280',
+    },
+  },
+  typography: {
+    fontFamily: 'var(--font-nunito)',
+  },
+});
+
+export default function ThemeRegistry({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

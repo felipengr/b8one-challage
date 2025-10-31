@@ -1,6 +1,30 @@
 @import "tailwindcss";
 
 :root {
+  color-scheme: light only !important;
+}
+
+html {
+  color-scheme: light only !important;
+  background-color: #ffffff !important;
+}
+
+body {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root,
+  html,
+  body {
+    color-scheme: light only !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+}
+
+:root {
   --font-nunito: 'Nunito', sans-serif;
 }
 

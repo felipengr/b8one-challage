@@ -15,7 +15,6 @@ const ITEMS_PER_PAGE = 6;
 
 export default function OfertasPage() {
   const [products, setProducts] = useState<Product[]>([]);
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -29,17 +28,8 @@ export default function OfertasPage() {
   const [filters, setFilters] = useState<FilterOptions>({
     category: 'all',
     minPrice: 0,
-    maxPrice: maxProductPrice,
+    maxPrice: 1000,
   });
-
-  useEffect(() => {
-    if (products.length > 0) {
-      setFilters(prev => ({
-        ...prev,
-        maxPrice: maxProductPrice,
-      }));
-    }
-  }, [maxProductPrice, products.length]);
 
   useEffect(() => {
     const loadData = async () => {
@@ -49,9 +39,15 @@ export default function OfertasPage() {
           fetchProducts(),
           fetchCategories(),
         ]);
+        
+        const maxPrice = Math.ceil(Math.max(...productsData.map(p => p.price)));
+        
         setProducts(productsData);
-        setFilteredProducts(productsData);
         setCategories(categoriesData);
+        setFilters(prev => ({
+          ...prev,
+          maxPrice,
+        }));
       } catch (err) {
         setError('Erro ao carregar produtos. Tente novamente mais tarde.');
         console.error(err);
@@ -63,7 +59,7 @@ export default function OfertasPage() {
     loadData();
   }, []);
 
-  useEffect(() => {
+  const filteredProducts = useMemo(() => {
     let result = products;
 
     if (filters.category !== 'all') {
@@ -74,9 +70,12 @@ export default function OfertasPage() {
       product => product.price >= filters.minPrice && product.price <= filters.maxPrice
     );
 
-    setFilteredProducts(result);
-    setCurrentPage(1);
+    return result;
   }, [filters, products]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filters]);
 
   const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -101,6 +100,7 @@ export default function OfertasPage() {
               filters={filters}
               products={products}
               loading={loading}
+              maxPrice={maxProductPrice}
               onFilterChange={setFilters}
             />
 

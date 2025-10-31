@@ -10,6 +10,7 @@ interface FiltersSidebarProps {
   products: Product[];
   loading: boolean;
   onFilterChange: (filters: FilterOptions) => void;
+  maxPrice: number;
 }
 
 export default function FiltersSidebar({ 
@@ -17,7 +18,7 @@ export default function FiltersSidebar({
   filters, 
   products, 
   loading, 
-  onFilterChange 
+  onFilterChange,
 }: FiltersSidebarProps) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
